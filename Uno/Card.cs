@@ -18,13 +18,45 @@ public class Card
 
     public static bool PlaysOn(Card card1, Card card2)
     {
-        return true;
+        if (card1.Type == CardType.Wild || card1.Type == CardType.WildDraw4)
+        {
+            return true;
+        }
+        else if (card1.Color == card2.Color)
+        {
+            return true;
+        }
+        else if (card1.Number == card2.Number)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
 
     public override string ToString()
     {
-        return $"{Color} {Number}";
+        switch (Type)
+        {
+            case CardType.Wild:
+                return "Wild";
+            case CardType.WildDraw4:
+                return "WildDraw4";
+            case CardType.Number:
+                return $"{Color} {Number}";
+            case CardType.Draw2:
+                return $"{Color} Draw 2";
+            case CardType.Skip:
+                return $"{Color} Skip";
+            case CardType.Reverse:
+                return $"{Color} Reverse";
+            default:
+                return "Failed to get card name";
+        }
+
     }
 
 }
