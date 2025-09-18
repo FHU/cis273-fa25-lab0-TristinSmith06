@@ -214,44 +214,44 @@ namespace UnitTests
 
         }
 
+        [TestMethod]
+        public void TestPlayerMostCommonColor()
+        {
+           var red5 = new Card() { Color = Color.Red, Number = 5, Type = CardType.Number };
+           var red9 = new Card() { Color = Color.Red, Number = 9, Type = CardType.Number };
+           var blue9 = new Card() { Color = Color.Blue, Number = 9, Type = CardType.Number };
+           var yellow2 = new Card() { Color = Color.Yellow, Number = 2, Type = CardType.Number };
+           var green1 = new Card() { Color = Color.Green, Number = 1, Type = CardType.Number };
+           var blueReverse = new Card() { Type = CardType.Reverse, Color = Color.Blue };
+           var greenReverse = new Card() { Type = CardType.Reverse, Color = Color.Green };
+           var redSkip = new Card() { Type = CardType.Skip, Color = Color.Red };
+           var blueSkip = new Card() { Type = CardType.Skip, Color = Color.Blue };
+           var redDraw2 = new Card() { Type = CardType.Draw2, Color = Color.Red };
+           var greenDraw2 = new Card() { Type = CardType.Draw2, Color = Color.Green };
+           var wild = new Card() { Type = CardType.Wild };
+           var wilddraw4 = new Card() { Type = CardType.WildDraw4 };
 
-        //public void TestPlayerMostCommonColor()
-        //{
-        //    var red5 = new Card() { Color = Color.Red, Number = 5, Type = CardType.Number };
-        //    var red9 = new Card() { Color = Color.Red, Number = 9, Type = CardType.Number };
-        //    var blue9 = new Card() { Color = Color.Blue, Number = 9, Type = CardType.Number };
-        //    var yellow2 = new Card() { Color = Color.Yellow, Number = 2, Type = CardType.Number };
-        //    var green1 = new Card() { Color = Color.Green, Number = 1, Type = CardType.Number };
-        //    var blueReverse = new Card() { Type = CardType.Reverse, Color = Color.Blue };
-        //    var greenReverse = new Card() { Type = CardType.Reverse, Color = Color.Green };
-        //    var redSkip = new Card() { Type = CardType.Skip, Color = Color.Red };
-        //    var blueSkip = new Card() { Type = CardType.Skip, Color = Color.Blue };
-        //    var redDraw2 = new Card() { Type = CardType.Draw2, Color = Color.Red };
-        //    var greenDraw2 = new Card() { Type = CardType.Draw2, Color = Color.Green };
-        //    var wild = new Card() { Type = CardType.Wild };
-        //    var wilddraw4 = new Card() { Type = CardType.WildDraw4 };
+           Card[] cards1 = { red5, red9, blue9, green1, redSkip };
 
-        //    Card[] cards1 = { red5, red9, blue9, green1, redSkip };
+           var player = new Player();
+           player.Hand.AddRange(cards1);
 
-        //    var player = new Player();
-        //    player.Hand.AddRange(cards1);
+           Assert.AreEqual(Color.Red, player.MostCommonColor());
 
-        //    Assert.AreEqual(Color.Red, player.MostCommonColor());
-
-        //    player.Hand.Clear();
-        //    Card[] cards2 = { red5, blue9, blueSkip };
-        //    player.Hand.AddRange(cards2);
-        //    Assert.AreEqual(Color.Blue, player.MostCommonColor());
-
-
-        //    player.Hand.Clear();
-        //    Card[] cards3 = { red5, blue9, green1 };
-        //    player.Hand.AddRange(cards3);
-        //    Assert.AreEqual(Color.Red, player.MostCommonColor());
+           player.Hand.Clear();
+           Card[] cards2 = { red5, blue9, blueSkip };
+           player.Hand.AddRange(cards2);
+           Assert.AreEqual(Color.Blue, player.MostCommonColor());
 
 
+           player.Hand.Clear();
+           Card[] cards3 = { red5, blue9, green1 };
+           player.Hand.AddRange(cards3);
+           Assert.AreEqual(Color.Red, player.MostCommonColor());
 
-        //}
+
+
+        }
 
         [TestMethod]
         public void TestGame()
