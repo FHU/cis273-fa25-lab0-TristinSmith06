@@ -17,17 +17,17 @@ public class Card
     public int? Number { get; set; }
 
 
-    private bool TypeIsIn(List<CardType> types)
-    {
-        foreach (var cardtype in types)
-        {
-            if (Type == cardtype)
-            {
-                return true;
-            }
-            return false;
-        }
-    }
+    // private bool TypeIsIn(List<CardType> types)
+    // {
+    //     foreach (var cardtype in types)
+    //     {
+    //         if (Type == cardtype)
+    //         {
+    //             return true;
+    //         }
+    //         return false;
+    //     }
+    // }
 
     public static bool PlaysOn(Card card1, Card card2)
     {   
