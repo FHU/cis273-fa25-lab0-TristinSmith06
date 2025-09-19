@@ -17,21 +17,19 @@ public class Card
     public int? Number { get; set; }
 
 
-    // private bool TypeIsIn(List<CardType> types)
-    // {
-    //     foreach (var cardtype in types)
-    //     {
-    //         if (Type == cardtype)
-    //         {
-    //             return true;
-    //         }
-    //         return false;
-    //     }
-    // }
+    private bool IsWild()
+    {
+        return Type == CardType.Wild || Type == CardType.WildDraw4;
+    }
+
+    private static bool CardsHaveType(Card card1, Card card2, CardType type)
+    {
+        return card1.Type == type && card2.Type == type;
+    }
 
     public static bool PlaysOn(Card card1, Card card2)
-    {   
-        if (card1.Type == CardType.Wild || card1.Type == CardType.WildDraw4 || card2.Type == CardType.Wild || card2.Type == CardType.WildDraw4) //Wild cards play on anything
+    {
+        if (card1.IsWild() || card2.IsWild()) //Wild cards play on anything and can have anything played on them
         {
             return true;
         }
@@ -39,11 +37,11 @@ public class Card
         {
             return true;
         }
-        else if (card1.Number == card2.Number && card1.Type == CardType.Number && card2.Type == CardType.Number)
+        else if (card1.Number == card2.Number && CardsHaveType(card1, card2, CardType.Number))
         { // card number only matters if both cards are numbered, prevents different type cards from being played when their numbers are technically the same
             return true;
         }
-        else if (card1.Type == card2.Type && card1.Type != CardType.Number && card2.Type != CardType.Number) // if the two cards are the same type, but not numbered cards
+        else if (card1.Type == card2.Type  && !CardsHaveType(card1, card2, CardType.Number)) // if the two cards are the same type, but not numbered cards
         {
             return true;
         }
