@@ -16,6 +16,19 @@ public class Card
     public Color Color { get; set; }
     public int? Number { get; set; }
 
+
+    private bool TypeIsIn(List<CardType> types)
+    {
+        foreach (var cardtype in types)
+        {
+            if (Type == cardtype)
+            {
+                return true;
+            }
+            return false;
+        }
+    }
+
     public static bool PlaysOn(Card card1, Card card2)
     {
         if (card1.Type == CardType.Wild || card1.Type == CardType.WildDraw4 || card2.Type == CardType.Wild || card2.Type == CardType.WildDraw4) //Wild cards play on anything

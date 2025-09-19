@@ -69,48 +69,23 @@ public class Player
         double max_val = sums.Max();
 
 
-        Dictionary<char, double> result = new Dictionary<char, double>() //put color counts into dictionary
-        {
-            ['r'] = red_count,
-            ['y'] = yellow_count,
-            ['b'] = blue_count,
-            ['g'] = green_count,
-            ['w'] = wild_count
-        };
-
-        List<char> keysToDelete = new List<char>();
-
-        foreach (KeyValuePair<char, double> item in result) //delete all keys that aren't the max value
-        {
-            if (item.Value != max_val)
-            {
-                keysToDelete.Add(item.Key);
-            }
-        }
-
-        foreach (var toDelete in keysToDelete)
-        {
-            result.Remove(toDelete);
-        }
-
-
-        if (result.ContainsKey('r')) //either one key remains or it's a tie, so the order of the elifs is the order in case of a tie
+        if (max_val == red_count) //elif order automatically accounts for ties
         {
             return Color.Red;
         }
-        else if (result.ContainsKey('y'))
+        else if (max_val == yellow_count)
         {
             return Color.Yellow;
         }
-        else if (result.ContainsKey('b'))
+        else if (max_val == blue_count)
         {
             return Color.Blue;
         }
-        else if (result.ContainsKey('g'))
+        else if (max_val == green_count)
         {
             return Color.Green;
         }
-        else if (result.ContainsKey('w'))
+        else if (max_val == wild_count)
         {
             return Color.Wild;
         }
